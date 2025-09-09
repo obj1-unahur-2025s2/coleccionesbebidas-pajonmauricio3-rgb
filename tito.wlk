@@ -1,8 +1,8 @@
 object tito {
     var cantidad = 0
     var bebida = cianuro
-    method peso() = 70
-    method inerciaBase() = 490
+    method peso() {return 70}
+    method inerciaBase(){return 490}
     method consumir(unaCantidad,unaBebida) {
         bebida = unaBebida
         cantidad = unaCantidad
@@ -28,3 +28,39 @@ object terere {
         //tambien (cantidad * 0.1).max(1)
     }
 }
+object licuadoDeFrutas {
+    const nutrientes = []
+
+    method agregarNutriente(unNutriente) {
+        nutrientes.add(unNutriente)
+    }  
+    method rendimiento(cantidad) {
+        return nutrientes.sum()*1.max(cantidad.div(1000))
+    }
+}
+object saborizada {
+    var bebida = wisky
+
+    method mezclarCon(unaBebida) {
+        bebida = unaBebida
+    }
+    method rendimiento(cantidad) {
+        return 1 + bebida.rendimiento(cantidad / 4)() / 4
+    }
+}
+object coctel {
+    const bebidas = #{}
+
+    method agregarBebida(unaBebida) {
+        bebidas.add(unaBebida)
+    }
+    method rendimiento(cantidad) {
+        var total = 1
+        bebidas.forEach({unaBebida => total = total * unaBebida.rendimiento(cantidad / bebidas.size())})
+        return total
+    }
+}
+
+method rendimiento(cantidad) {
+        return nutrientes.sum({unaFruta => unaFruta.nutrientes()})
+    }
